@@ -20,19 +20,19 @@ import type {
 export async function createCustomList(
   name: string,
   description?: string,
-  isPublic: boolean = false,
+  isPublic = false,
 ): Promise<DbResponse<CustomList>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("custom_lists")
     .insert({
       name,
-      description: description || null,
+      description: description ?? null,
       is_public: isPublic,
     })
     .select()
     .single();
 
-  return { data, error };
+  return { data: response.data as CustomList | null, error: response.error };
 }
 
 /**
@@ -65,7 +65,7 @@ export async function getUserCustomLists(
 export async function getCustomListById(
   listId: string,
 ): Promise<DbResponse<CustomListWithFullMovies>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("custom_lists")
     .select(
       `
@@ -80,7 +80,7 @@ export async function getCustomListById(
     .eq("id", listId)
     .single();
 
-  return { data, error };
+  return { data: response.data as CustomListWithFullMovies | null, error: response.error };
 }
 
 /**
@@ -89,7 +89,7 @@ export async function getCustomListById(
  * @returns Array of public custom lists with movie counts and user info
  */
 export async function getPublicCustomLists(
-  limit: number = 20,
+  limit = 20,
 ): Promise<DbResponse<CustomListWithUserAndCount[]>> {
   const { data, error } = await supabase
     .from("custom_lists")
@@ -117,14 +117,14 @@ export async function updateCustomList(
   listId: string,
   updates: CustomListUpdate,
 ): Promise<DbResponse<CustomList>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("custom_lists")
     .update(updates)
     .eq("id", listId)
     .select()
     .single();
 
-  return { data, error };
+  return { data: response.data as CustomList | null, error: response.error };
 }
 
 /**
@@ -153,7 +153,7 @@ export async function addMovieToCustomList(
   listId: string,
   movieId: string,
 ): Promise<DbResponse<CustomListMovie>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("custom_list_movies")
     .insert({
       list_id: listId,
@@ -162,7 +162,7 @@ export async function addMovieToCustomList(
     .select()
     .single();
 
-  return { data, error };
+  return { data: response.data as CustomListMovie | null, error: response.error };
 }
 
 /**

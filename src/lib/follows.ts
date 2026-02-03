@@ -15,7 +15,7 @@ import type {
 export async function followUser(
   followingId: string,
 ): Promise<DbResponse<UserFollow>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("user_follows")
     .insert({
       following_id: followingId,
@@ -23,7 +23,7 @@ export async function followUser(
     .select()
     .single();
 
-  return { data, error };
+  return { data: response.data as UserFollow | null, error: response.error };
 }
 
 /**
@@ -92,10 +92,10 @@ export async function isFollowing(
   followerId: string,
   followingId: string,
 ): Promise<boolean> {
-  const { data } = await supabase.rpc("is_following", {
+  const response = await supabase.rpc("is_following", {
     follower_uuid: followerId,
     following_uuid: followingId,
   });
 
-  return data;
+  return response.data as boolean;
 }

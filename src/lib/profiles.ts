@@ -7,13 +7,16 @@ import type { Profile, ProfileUpdate, DbResponse } from "./types";
  * @returns User profile data
  */
 export async function getProfile(userId: string): Promise<DbResponse<Profile>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("profiles")
     .select("*")
     .eq("id", userId)
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as Profile | null,
+    error: response.error,
+  };
 }
 
 /**
@@ -26,12 +29,15 @@ export async function updateProfile(
   userId: string,
   updates: ProfileUpdate,
 ): Promise<DbResponse<Profile>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("profiles")
     .update(updates)
     .eq("id", userId)
     .select()
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as Profile | null,
+    error: response.error,
+  };
 }

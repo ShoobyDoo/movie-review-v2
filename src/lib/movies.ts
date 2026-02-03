@@ -10,18 +10,18 @@ export async function getOrCreateMovie(
   omdbData: OMDBMovieData,
 ): Promise<DbResponse<Pick<Movie, "id">>> {
   // Check if movie exists
-  const { data: existing } = await supabase
+  const existingResponse = await supabase
     .from("movies")
     .select("id")
     .eq("imdb_id", omdbData.imdbID)
     .single();
 
-  if (existing) {
-    return { data: existing, error: null };
+  if (existingResponse.data) {
+    return { data: existingResponse.data, error: null };
   }
 
   // Create new movie
-  const { data, error } = await supabase
+  const response = await supabase
     .from("movies")
     .insert({
       imdb_id: omdbData.imdbID,
@@ -37,5 +37,8 @@ export async function getOrCreateMovie(
     .select()
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as Pick<Movie, "id"> | null,
+    error: response.error,
+  };
 }

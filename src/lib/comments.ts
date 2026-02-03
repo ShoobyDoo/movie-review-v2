@@ -11,7 +11,7 @@ export async function createComment(
   reviewId: string,
   commentText: string,
 ): Promise<DbResponse<CommentWithUser>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("comments")
     .insert({
       review_id: reviewId,
@@ -25,7 +25,10 @@ export async function createComment(
     )
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as CommentWithUser | null,
+    error: response.error,
+  };
 }
 
 /**
@@ -36,7 +39,7 @@ export async function createComment(
 export async function getReviewComments(
   reviewId: string,
 ): Promise<DbResponse<CommentWithUser[]>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("comments")
     .select(
       `
@@ -47,7 +50,7 @@ export async function getReviewComments(
     .eq("review_id", reviewId)
     .order("created_at", { ascending: true });
 
-  return { data, error };
+  return { data: response.data, error: response.error };
 }
 
 /**

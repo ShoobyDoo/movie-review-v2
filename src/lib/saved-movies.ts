@@ -17,7 +17,7 @@ export async function addToList(
   movieId: string,
   listType: ListType,
 ): Promise<DbResponse<SavedMovie>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("saved_movies")
     .insert({
       movie_id: movieId,
@@ -26,7 +26,7 @@ export async function addToList(
     .select()
     .single();
 
-  return { data, error };
+  return { data: response.data as SavedMovie | null, error: response.error };
 }
 
 /**

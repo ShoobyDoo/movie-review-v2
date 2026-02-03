@@ -144,7 +144,7 @@ export interface FollowingWithProfile {
 
 // Custom list types with joined data
 export interface CustomListWithCount extends CustomList {
-  custom_list_movies: Array<{ count: number }>;
+  custom_list_movies: { count: number }[];
 }
 
 export interface CustomListMovieWithMovie {
@@ -159,7 +159,7 @@ export interface CustomListWithFullMovies extends CustomList {
 
 export interface CustomListWithUserAndCount extends CustomList {
   user: Pick<Profile, 'username' | 'display_name' | 'avatar_url'>;
-  custom_list_movies: Array<{ count: number }>;
+  custom_list_movies: { count: number }[];
 }
 
 // Legacy type (kept for backwards compatibility)

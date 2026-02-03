@@ -21,9 +21,9 @@ export async function createReview(
   movieId: string,
   rating: number,
   reviewText: string,
-  isPublic: boolean = true,
+  isPublic = true,
 ): Promise<DbResponse<Review>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("reviews")
     .insert({
       movie_id: movieId,
@@ -34,7 +34,10 @@ export async function createReview(
     .select()
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as Review | null,
+    error: response.error,
+  };
 }
 
 /**
@@ -43,9 +46,9 @@ export async function createReview(
  * @returns Array of public reviews with joined user and movie data
  */
 export async function getPublicReviews(
-  limit: number = 10,
+  limit = 10,
 ): Promise<DbResponse<ReviewWithDetails[]>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("reviews")
     .select(
       `
@@ -58,7 +61,7 @@ export async function getPublicReviews(
     .order("created_at", { ascending: false })
     .limit(limit);
 
-  return { data, error };
+  return { data: response.data, error: response.error };
 }
 
 /**
@@ -69,7 +72,7 @@ export async function getPublicReviews(
 export async function getReviewById(
   reviewId: string,
 ): Promise<DbResponse<ReviewWithFullDetails>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("reviews")
     .select(
       `
@@ -82,7 +85,10 @@ export async function getReviewById(
     .eq("is_public", true)
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as ReviewWithFullDetails | null,
+    error: response.error,
+  };
 }
 
 /**
@@ -93,7 +99,7 @@ export async function getReviewById(
 export async function getUserReviews(
   userId: string,
 ): Promise<DbResponse<ReviewWithMovie[]>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("reviews")
     .select(
       `
@@ -105,7 +111,7 @@ export async function getUserReviews(
     .eq("is_public", true)
     .order("created_at", { ascending: false });
 
-  return { data, error };
+  return { data: response.data, error: response.error };
 }
 
 /**
@@ -118,14 +124,17 @@ export async function updateReview(
   reviewId: string,
   updates: ReviewUpdate,
 ): Promise<DbResponse<Review>> {
-  const { data, error } = await supabase
+  const response = await supabase
     .from("reviews")
     .update(updates)
     .eq("id", reviewId)
     .select()
     .single();
 
-  return { data, error };
+  return {
+    data: response.data as Review | null,
+    error: response.error,
+  };
 }
 
 /**

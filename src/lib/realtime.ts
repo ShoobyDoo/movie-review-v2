@@ -65,5 +65,5 @@ export function subscribeToCommentVotes(
  * @param channel Realtime channel to unsubscribe from
  */
 export function unsubscribe(channel: RealtimeChannel): void {
-  supabase.removeChannel(channel);
+  void supabase.removeChannel(channel);
 }

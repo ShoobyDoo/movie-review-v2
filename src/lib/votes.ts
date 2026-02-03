@@ -18,7 +18,7 @@ export async function voteOnComment(
   voteType: 1 | -1,
 ): Promise<DbResponse<CommentVote>> {
   // Try to insert vote (will fail if already exists due to unique constraint)
-  const { data, error } = await supabase
+  const response = await supabase
     .from("comment_votes")
     .upsert(
       {
@@ -32,7 +32,7 @@ export async function voteOnComment(
     .select()
     .single();
 
-  return { data, error };
+  return { data: response.data as CommentVote | null, error: response.error };
 }
 
 /**
@@ -57,9 +57,9 @@ export async function removeVote(commentId: string): Promise<DbErrorResponse> {
 export async function getCommentVotes(
   commentId: string,
 ): Promise<DbResponse<CommentVoteCounts>> {
-  const { data, error } = await supabase.rpc("get_comment_vote_counts", {
+  const response = await supabase.rpc("get_comment_vote_counts", {
     comment_uuid: commentId,
   });
 
-  return { data, error };
+  return { data: response.data as CommentVoteCounts | null, error: response.error };
 }
