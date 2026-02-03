@@ -3,7 +3,33 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-function App() {
+/*
+import { supabase } from "./lib/supabase";
+
+// Sign up
+await supabase.auth.signUp({ email, password });
+
+// Create a review
+await supabase.from("reviews").insert({
+  movie_id: movieId,
+  rating: 8.5,
+  review_text: "Amazing!",
+});
+
+// Get public reviews with user and movie info
+const { data } = await supabase
+  .from("reviews")
+  .select(
+    `
+      *,
+      user:profiles(*),
+      movie:movies(*)
+    `,
+  )
+  .eq("is_public", true);
+*/
+
+const App = () => {
   const [count, setCount] = useState(0);
 
   return (
@@ -30,6 +56,6 @@ function App() {
       </p>
     </>
   );
-}
+};
 
 export default App;
