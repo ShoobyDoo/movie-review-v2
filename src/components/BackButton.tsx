@@ -5,7 +5,7 @@ const BackButton = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1);
+    void navigate(-1);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

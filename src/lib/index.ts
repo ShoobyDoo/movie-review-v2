@@ -2,31 +2,31 @@
 // TYPES
 // ============================================================================
 
-export * from './types';
+export * from "./types";
 
 // ============================================================================
 // UTILITIES
 // ============================================================================
 
-export * from './utils';
+export * from "./utils";
 
 // ============================================================================
 // AUTHENTICATION
 // ============================================================================
 
-export { signUp, signIn, signOut, getCurrentUser } from './auth';
+export { signUp, signIn, signOut, getCurrentUser } from "./auth";
 
 // ============================================================================
 // PROFILES
 // ============================================================================
 
-export { getProfile, updateProfile } from './profiles';
+export { getProfile, updateProfile } from "./profiles";
 
 // ============================================================================
 // MOVIES
 // ============================================================================
 
-export { getOrCreateMovie } from './movies';
+export { getOrCreateMovie } from "./movies";
 
 // ============================================================================
 // REVIEWS
@@ -39,25 +39,25 @@ export {
   getUserReviews,
   updateReview,
   deleteReview,
-} from './reviews';
+} from "./reviews";
 
 // ============================================================================
 // COMMENTS
 // ============================================================================
 
-export { createComment, getReviewComments, deleteComment } from './comments';
+export { createComment, getReviewComments, deleteComment } from "./comments";
 
 // ============================================================================
 // VOTES
 // ============================================================================
 
-export { voteOnComment, removeVote, getCommentVotes } from './votes';
+export { voteOnComment, removeVote, getCommentVotes } from "./votes";
 
 // ============================================================================
 // SAVED MOVIES
 // ============================================================================
 
-export { addToList, removeFromList, getUserList } from './saved-movies';
+export { addToList, removeFromList, getUserList } from "./saved-movies";
 
 // ============================================================================
 // FOLLOWS
@@ -69,7 +69,7 @@ export {
   getFollowers,
   getFollowing,
   isFollowing,
-} from './follows';
+} from "./follows";
 
 // ============================================================================
 // CUSTOM LISTS
@@ -84,7 +84,7 @@ export {
   deleteCustomList,
   addMovieToCustomList,
   removeMovieFromCustomList,
-} from './custom-lists';
+} from "./custom-lists";
 
 // ============================================================================
 // REALTIME
@@ -94,4 +94,4 @@ export {
   subscribeToReviewComments,
   subscribeToCommentVotes,
   unsubscribe,
-} from './realtime';
+} from "./realtime";

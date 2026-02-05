@@ -1,11 +1,11 @@
 import { Link } from "react-router";
 import { Film } from "lucide-react";
 
-type AuthLayoutProps = {
+interface AuthLayoutProps {
   children: React.ReactNode;
   title: string;
   subtitle: string;
-};
+}
 
 const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
   return (

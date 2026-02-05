@@ -7,5 +7,5 @@ interface UserData {
 export interface NavbarProps {
   user?: UserData | null;
   onLogout?: () => void;
-  scrollContainerRef?: React.RefObject<HTMLElement>;
+  scrollContainerRef?: React.RefObject<HTMLElement | null>;
 }

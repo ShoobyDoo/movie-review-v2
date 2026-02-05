@@ -20,10 +20,7 @@ const MainLayout = () => {
   return (
     <div className="h-screen flex flex-col">
       <Navbar scrollContainerRef={mainRef} />
-      <main
-        ref={mainRef}
-        className="flex-1 overflow-y-auto mt-16"
-      >
+      <main ref={mainRef} className="flex-1 overflow-y-auto mt-16">
         <Outlet />
       </main>
     </div>

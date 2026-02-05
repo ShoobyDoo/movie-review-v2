@@ -80,7 +80,10 @@ export async function getCustomListById(
     .eq("id", listId)
     .single();
 
-  return { data: response.data as CustomListWithFullMovies | null, error: response.error };
+  return {
+    data: response.data as CustomListWithFullMovies | null,
+    error: response.error,
+  };
 }
 
 /**
@@ -162,7 +165,10 @@ export async function addMovieToCustomList(
     .select()
     .single();
 
-  return { data: response.data as CustomListMovie | null, error: response.error };
+  return {
+    data: response.data as CustomListMovie | null,
+    error: response.error,
+  };
 }
 
 /**

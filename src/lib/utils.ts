@@ -1,5 +1,5 @@
-import type { PostgrestError } from '@supabase/supabase-js';
-import type { DbResponse } from './types';
+import type { PostgrestError } from "@supabase/supabase-js";
+import type { DbResponse } from "./types";
 
 /**
  * Custom database error class
@@ -8,13 +8,9 @@ export class DatabaseError extends Error {
   public originalError?: PostgrestError;
   public code?: string;
 
-  constructor(
-    message: string,
-    originalError?: PostgrestError,
-    code?: string
-  ) {
+  constructor(message: string, originalError?: PostgrestError, code?: string) {
     super(message);
-    this.name = 'DatabaseError';
+    this.name = "DatabaseError";
     this.originalError = originalError;
     this.code = code;
   }
@@ -31,12 +27,12 @@ export function unwrapResponse<T>(response: DbResponse<T>): T {
     throw new DatabaseError(
       response.error.message,
       response.error,
-      response.error.code
+      response.error.code,
     );
   }
 
   if (response.data === null) {
-    throw new DatabaseError('No data returned from database');
+    throw new DatabaseError("No data returned from database");
   }
 
   return response.data;
@@ -48,7 +44,7 @@ export function unwrapResponse<T>(response: DbResponse<T>): T {
  * @returns true if error is a unique constraint violation
  */
 export function isUniqueConstraintError(error: PostgrestError): boolean {
-  return error.code === '23505';
+  return error.code === "23505";
 }
 
 /**
@@ -57,7 +53,7 @@ export function isUniqueConstraintError(error: PostgrestError): boolean {
  * @returns true if error indicates resource not found
  */
 export function isNotFoundError(error: PostgrestError): boolean {
-  return error.code === 'PGRST116';
+  return error.code === "PGRST116";
 }
 
 /**
@@ -66,5 +62,5 @@ export function isNotFoundError(error: PostgrestError): boolean {
  * @returns true if error is a foreign key violation
  */
 export function isForeignKeyError(error: PostgrestError): boolean {
-  return error.code === '23503';
+  return error.code === "23503";
 }

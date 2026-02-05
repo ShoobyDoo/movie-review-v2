@@ -1,6 +1,6 @@
-type AuthDividerProps = {
+interface AuthDividerProps {
   text?: string;
-};
+}
 
 const AuthDivider = ({ text = "or" }: AuthDividerProps) => {
   return (

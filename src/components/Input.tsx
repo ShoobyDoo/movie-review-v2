@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-type InputProps = {
+interface InputProps {
   id: string;
   label: string;
   type?: "text" | "email" | "password";
@@ -11,7 +11,7 @@ type InputProps = {
   required?: boolean;
   autoComplete?: string;
   labelAction?: React.ReactNode;
-};
+}
 
 const Input = ({
   id,

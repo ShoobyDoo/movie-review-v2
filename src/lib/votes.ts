@@ -61,5 +61,8 @@ export async function getCommentVotes(
     comment_uuid: commentId,
   });
 
-  return { data: response.data as CommentVoteCounts | null, error: response.error };
+  return {
+    data: response.data as CommentVoteCounts | null,
+    error: response.error,
+  };
 }

@@ -31,7 +31,10 @@ const Register = () => {
   };
 
   return (
-    <AuthLayout title="Create an account" subtitle="Join the CineReview community">
+    <AuthLayout
+      title="Create an account"
+      subtitle="Join the CineReview community"
+    >
       <div className="absolute top-4 left-4">
         <BackButton />
       </div>
@@ -80,12 +83,7 @@ const Register = () => {
           autoComplete="new-password"
         />
 
-        <Button
-          type="submit"
-          disabled={isLoading}
-          className="w-full"
-          size="md"
-        >
+        <Button type="submit" disabled={isLoading} className="w-full" size="md">
           {isLoading ? "Creating account..." : "Create account"}
         </Button>
       </form>

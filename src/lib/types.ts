@@ -1,4 +1,4 @@
-import { PostgrestError } from '@supabase/supabase-js';
+import { PostgrestError } from "@supabase/supabase-js";
 
 // ============================================================================
 // DATABASE ENTITY TYPES
@@ -70,7 +70,7 @@ export interface CommentVote {
   created_at: string;
 }
 
-export type ListType = 'watchlist' | 'favorites' | 'watched';
+export type ListType = "watchlist" | "favorites" | "watched";
 
 export interface SavedMovie {
   id: string;
@@ -110,8 +110,8 @@ export interface CustomListMovie {
 
 // Review types with joined data
 export interface ReviewWithDetails extends Review {
-  user: Pick<Profile, 'username' | 'display_name' | 'avatar_url'>;
-  movie: Pick<Movie, 'id' | 'title' | 'poster_url' | 'year'>;
+  user: Pick<Profile, "username" | "display_name" | "avatar_url">;
+  movie: Pick<Movie, "id" | "title" | "poster_url" | "year">;
 }
 
 export interface ReviewWithFullDetails extends Review {
@@ -120,12 +120,12 @@ export interface ReviewWithFullDetails extends Review {
 }
 
 export interface ReviewWithMovie extends Review {
-  movie: Pick<Movie, 'id' | 'title' | 'poster_url' | 'year'>;
+  movie: Pick<Movie, "id" | "title" | "poster_url" | "year">;
 }
 
 // Comment types with joined data
 export interface CommentWithUser extends Comment {
-  user: Pick<Profile, 'username' | 'display_name' | 'avatar_url'>;
+  user: Pick<Profile, "username" | "display_name" | "avatar_url">;
 }
 
 // Saved movie types with joined data
@@ -158,7 +158,7 @@ export interface CustomListWithFullMovies extends CustomList {
 }
 
 export interface CustomListWithUserAndCount extends CustomList {
-  user: Pick<Profile, 'username' | 'display_name' | 'avatar_url'>;
+  user: Pick<Profile, "username" | "display_name" | "avatar_url">;
   custom_list_movies: { count: number }[];
 }
 
@@ -214,11 +214,17 @@ export interface DbErrorResponse {
 // UPDATE TYPES (partial)
 // ============================================================================
 
-export type ProfileUpdate = Partial<Pick<Profile, 'username' | 'display_name' | 'bio' | 'avatar_url'>>;
+export type ProfileUpdate = Partial<
+  Pick<Profile, "username" | "display_name" | "bio" | "avatar_url">
+>;
 
-export type ReviewUpdate = Partial<Pick<Review, 'rating' | 'review_text' | 'is_public'>>;
+export type ReviewUpdate = Partial<
+  Pick<Review, "rating" | "review_text" | "is_public">
+>;
 
-export type CustomListUpdate = Partial<Pick<CustomList, 'name' | 'description' | 'is_public'>>;
+export type CustomListUpdate = Partial<
+  Pick<CustomList, "name" | "description" | "is_public">
+>;
 
 // ============================================================================
 // HELPER RETURN TYPES
