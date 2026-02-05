@@ -70,6 +70,34 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: #0a0a0a;
+    background-image:
+      radial-gradient(circle at 30% 20%, rgba(60, 180, 100, 0.08), transparent 50%),
+      linear-gradient(135deg, rgba(60, 180, 100, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  /* Modern minimal scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-800/50 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zinc-700/70;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.2 0 0 / 0.5) transparent;
   }
 }
